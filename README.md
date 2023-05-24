@@ -1,7 +1,5 @@
 # Angular-Training-Mini-Project
 
-Team 12
-Oleh :
+Team 12 -  Books Library Management
   - Judanti Cahyaning Tyas
   - Winata Liadylova
-Tema : Books Library Management
