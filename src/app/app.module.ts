@@ -4,38 +4,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { ComponentsModule } from './components/components.module';
-import { BooksManagementComponent } from './books-management/books-management.component';
-import { BooksCategoryComponent } from './books-category/books-category.component';
-import { UserManagementComponent } from './user-management/user-management.component';
-import { BooksIssueComponent } from './books-issue/books-issue.component';
-// import { DashboardComponent } from './dashboard/dashboard.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptorService } from './service/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // NavbarComponent,
-    // SidebarComponent,
-    // FooterComponent,
     AdminComponent,
-    // BooksIssueComponent,
-    // UserManagementComponent,
-    // BooksCategoryComponent,
-    // BooksManagementComponent,
-    // DashboardComponent
+    AuthComponent
   ],
   imports: [
-    // AppComponent,
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule
-    // NgbModule
+    ComponentsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
