@@ -12,20 +12,22 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './service/auth/auth-interceptor.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
     FormsModule,
-    ReactiveFormsModule
   ],
   providers: [
     {

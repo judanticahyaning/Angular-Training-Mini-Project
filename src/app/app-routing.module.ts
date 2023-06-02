@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
