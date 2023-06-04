@@ -12,3 +12,15 @@ export interface authResponseData{
   localId: string;
   registered?: string;
 }
+
+export interface authReqDataUser{
+  idToken: string;
+}
+
+export interface authResDataUser{
+  idToken?:string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+}

@@ -12,121 +12,89 @@
             <table class="table">
               <thead class=" text-primary">
                 <th>
-                  Name
+                  ID
                 </th>
                 <th>
-                  Country
+                  Email
                 </th>
                 <th>
-                  City
+                  Password
                 </th>
-                <th class="text-right">
-                  Salary
+                <th>
+                  Action
                 </th>
               </thead>
-              <tbody>
+              <tbody *ngFor="let dataUser of loadedPosts">
                 <tr>
                   <td>
-                    Dakota Rice
+                    {{dataUser.id}}
                   </td>
                   <td>
-                    Niger
+                    {{dataUser.email}}
                   </td>
                   <td>
-                    Oud-Turnhout
-                  </td>
-                  <td class="text-right">
-                    $36,738
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Minerva Hooper
+                    {{dataUser.password}}
                   </td>
                   <td>
-                    Curaçao
-                  </td>
-                  <td>
-                    Sinaai-Waas
-                  </td>
-                  <td class="text-right">
-                    $23,789
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Sage Rodriguez
-                  </td>
-                  <td>
-                    Netherlands
-                  </td>
-                  <td>
-                    Baileux
-                  </td>
-                  <td class="text-right">
-                    $56,142
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Philip Chaney
-                  </td>
-                  <td>
-                    Korea, South
-                  </td>
-                  <td>
-                    Overland Park
-                  </td>
-                  <td class="text-right">
-                    $38,735
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Doris Greene
-                  </td>
-                  <td>
-                    Malawi
-                  </td>
-                  <td>
-                    Feldkirchen in Kärnten
-                  </td>
-                  <td class="text-right">
-                    $63,542
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Mason Porter
-                  </td>
-                  <td>
-                    Chile
-                  </td>
-                  <td>
-                    Gloucester
-                  </td>
-                  <td class="text-right">
-                    $78,615
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Jon Porter
-                  </td>
-                  <td>
-                    Portugal
-                  </td>
-                  <td>
-                    Gloucester
-                  </td>
-                  <td class="text-right">
-                    $98,615
+                    <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" >
+                      Edit
+                    </button>
+                    <button class="btn btn-danger" >Delete</button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #showUpdate="ngForm" >
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="email">Email address</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   ngModel
+                   email
+                   required
+                   class="form-control form-control-lg"/>
+            
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+            for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   ngModel
+                   minlength="6"
+                   required
+                   class="form-control form-control-lg"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!showUpdate.valid" >Edit</button>
       </div>
     </div>
   </div>

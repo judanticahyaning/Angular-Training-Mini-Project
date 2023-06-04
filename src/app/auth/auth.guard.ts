@@ -25,6 +25,7 @@ export class AuthGuard implements CanActivate{
           if(isAuth)
             return true;
 
+            console.log("masuk auth guard")
           return this.router.createUrlTree(['/auth']);
         })
       )

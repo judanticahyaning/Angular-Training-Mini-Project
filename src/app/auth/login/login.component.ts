@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { authRequestData, authResponseData } from 'src/app/model/auth.model';
 import { Observable } from 'rxjs';
@@ -12,9 +12,13 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent {
 
+  success: boolean = false;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    // private navCtrl: NavController
+    private activatedRoute: ActivatedRoute
+    // private route: ActivatedRoute
   ) { }
 
   onSubmit(loginForm: NgForm) {
@@ -33,25 +37,33 @@ export class LoginComponent {
     let authObservable: Observable<authResponseData>;
     authObservable = this.authService.login(authReqData);
 
-    // authObservable.subscribe({
-    //   next: resData => {
-    //     console.log(resData);
-    //     this.router.navigate(['/dashboard']);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   }
-    // })
-
-    authObservable.subscribe(
-      resdata => {
-        console.log(resdata);
-        this.router.navigate(['auth','dashboard']);
+    authObservable.subscribe({
+      next: resData => {
+        console.log(resData);
+        this.success = true;
+        this.router.navigate(['../../admin/dashboard']);
       },
-      errorMsg => {
-        console.log(errorMsg);
+      error: (error) => {
+        this.success = false;
+        console.log(error);
       }
-    );
+    })
+    
+
+    // if(this.success)
+      // this.router.navigate(['/admin/dashboard']);
+
+    // authObservable.subscribe(
+    //   resdata => {
+    //     console.log(resdata);
+    //     debugger
+    //     this.router.navigate(['/admin/dashboard']);
+    //     console.log("terlempar ke routing lain")
+    //   },
+    //   errorMsg => {
+    //     console.log(errorMsg);
+    //   }
+    // );
 
     loginForm.reset();
   }
