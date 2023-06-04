@@ -14,3 +14,9 @@ export class User{
     return this.token;
   }
 }
+
+export interface UserData{
+  id?: string,
+  email: string,
+  password: string
+}

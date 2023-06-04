@@ -12,6 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './service/auth/auth-interceptor.service';
+import { ROUTES, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AuthComponent,
   ],
   imports: [
+    // RouterModule.forRoot(ROUTES),
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,

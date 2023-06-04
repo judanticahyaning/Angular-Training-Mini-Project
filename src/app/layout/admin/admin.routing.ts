@@ -4,8 +4,17 @@ import { BooksIssueComponent } from "src/app/admin/books-issue/books-issue.compo
 import { BooksManagementComponent } from "src/app/admin/books-management/books-management.component";
 import { DashboardComponent } from "src/app/admin/dashboard/dashboard.component";
 import { UserManagementComponent } from "src/app/admin/user-management/user-management.component";
+import { AuthComponent } from "src/app/auth/auth.component";
+import { AuthGuard } from "src/app/auth/auth.guard";
+import { LoginComponent } from "src/app/auth/login/login.component";
 
 export const AdminRoutes: Routes = [
+  // {
+  //   path: 'dashboard',
+  //   redirectTo: 'dashboard',
+  //   canActivate: [AuthGuard],
+  //   pathMatch: "full"
+  // },
   {
     path: 'dashboard',
     component: DashboardComponent
@@ -25,5 +34,13 @@ export const AdminRoutes: Routes = [
   {
     path: 'user-management',
     component: UserManagementComponent
-  }
+  },
+  // {
+  //   path: 'auth',
+  //   component: AuthComponent
+  // },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent
+  // }
 ]

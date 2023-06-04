@@ -7,15 +7,11 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
-  { path: '/books-management', title: 'Books Management',  icon:'education_atom', class: '' },
-  { path: '/books-category', title: 'Books Category',  icon:'location_map-big', class: '' },
-  { path: '/books-issue', title: 'Books Issue',  icon:'ui-1_bell-53', class: '' },
-
-  { path: '/user-management', title: 'User Management',  icon:'users_single-02', class: '' },
-  // { path: '/table-list', title: 'Table List',  icon:'design_bullet-list-67', class: '' },
-  // { path: '/typography', title: 'Typography',  icon:'text_caps-small', class: '' },
-  // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' }
+  { path: '/admin/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
+  { path: '/admin/books-management', title: 'Books Management',  icon:'education_atom', class: '' },
+  { path: '/admin/books-category', title: 'Books Category',  icon:'location_map-big', class: '' },
+  { path: '/admin/books-issue', title: 'Books Issue',  icon:'ui-1_bell-53', class: '' },
+  { path: '/admin/user-management', title: 'User Management',  icon:'users_single-02', class: '' },
 
 ];
 

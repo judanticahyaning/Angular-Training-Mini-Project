@@ -7,7 +7,6 @@ import { AuthService } from './service/auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
   
   constructor(
     private authService: AuthService

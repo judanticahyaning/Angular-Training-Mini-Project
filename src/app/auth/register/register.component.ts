@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { Router } from '@angular/router';
-import { authRequestData, authResponseData } from 'src/app/model/auth.model';
+import { authRequestData, authResponseData, authReqDataUser, authResDataUser } from 'src/app/model/auth.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -28,9 +28,18 @@ export class RegisterComponent {
       password: password,
       returnSecureToken: true,
     }
+    // const authReqUser: authReqDataUser = {
+    //   email: email,
+    //   password: password
+    // }
 
     let authObservable: Observable<authResponseData>;
+    // let addUserData: Observable<authResDataUser>;
+    // this.authService.saveUserData(authReqUser);
     authObservable = this.authService.register(authReqData);
+
+    // console.log(addUserData);
+    // console.log(authReqUser);
 
     debugger
     authObservable.subscribe(
@@ -43,6 +52,15 @@ export class RegisterComponent {
       }
     );
 
+    // addUserData.subscribe(
+    //   resdata => {
+    //     console.log(resdata);
+    //     // this.router.navigate(['/login']);
+    //   },
+    //   errorMsg => {
+    //     console.log(errorMsg);
+    //   }
+    // );
     // authObservable.subscribe({
     //   next: (resData) => {
     //     console.log(resData);

@@ -8,24 +8,24 @@ import { AuthGuard } from './auth/auth.guard';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
+    {
+      path: '',
+      redirectTo: '/auth',
+      pathMatch: 'full'
+    },
   {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
-  },
-  {
-    path:'',
+    path:'admin',
     component: AdminComponent,
-    // canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./layout/admin/admin.module').then(x=>x.AdminComponentModule)
-      }
-    ]
+    loadChildren: () => import('./layout/admin/admin.module').then(x=>x.AdminComponentModule)
+    // children: [
+    //   {
+    //     path: '',
+    //     loadChildren: () => import('./layout/admin/admin.module').then(x=>x.AdminComponentModule)
+    //   }
+    // ]
   },
   {
-    path: '',
+    path: 'auth',
     component: AuthComponent,
     children: [
       {
