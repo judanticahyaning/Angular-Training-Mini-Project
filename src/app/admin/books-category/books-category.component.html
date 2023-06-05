@@ -15,8 +15,6 @@
             <table class="table">
               <thead class="text-primary">
                 <th>
-                </th>
-                <th>
                   Category
                 </th>
                 <th>
@@ -26,25 +24,19 @@
                   Action
                 </th>
               </thead>
-              <tbody *ngFor="let post of loadedPosts">
+              <tbody *ngFor="let post of loadedCategory">
                 <tr>
                   <td>
-                    <img src="{{post.image}}" style="height: 50px; width: 50px;">
+                    <p>{{post.name}}</p>
                   </td>
                   <td>
-                    <h4>{{post.title}}</h4>
-                  </td>
-                  <td>
-                    <p>{{post.content}}</p>
-                  </td>
-                  <td>
-                    <p>{{post.category}}</p>
+                    <p>{{post.totalBook}}</p>
                   </td>
                   <td class="text-right">
                     <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="viewPost(post)">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="viewPost(post)">
                       Edit
-                    </button> -->
+                    </button>
                     <button class="btn btn-danger">Delete</button>
                   </td>
                 </tr>
@@ -63,7 +55,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Book</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,26 +63,15 @@
       <div class="modal-body">
         <form #postForm="ngForm" (ngSubmit)="onCreateCategoryPost(postForm.value)">
           <div class="form-group">
-            <label for="title">category</label>
+            <label for="name">name</label>
             <input
               type="text"
               class="form-control"
-              id="category"
+              id="name"
               required
-              [(ngModel)]="category"
-              name="category"
+              [(ngModel)]="name"
+              name="name"
             />
-          </div>
-          <div class="form-group">
-              <label for="image">totalBook</label>
-              <input
-                type="number"
-                class="form-control"
-                id="totalBook"
-                required
-                [(ngModel)]="totalBook"
-                name="totalBook"
-              />
           </div>
           <button
             class="btn btn-primary"
@@ -111,7 +92,7 @@
 
 
 <!-- Edit Modal -->
-<!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -121,60 +102,30 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #showUpdate="ngForm" (ngSubmit)="onUpdatePost()">
+        <form #showUpdate="ngForm" (ngSubmit)="onUpdateCategory()">
           <div class="form-group">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              class="form-control"
-              id="title"
-              required
-              [(ngModel)]="title"
-              name="title"
-            />
-          </div>
-          <div class="form-group">
-              <label for="image">Image</label>
-              <input
-                type="text"
-                class="form-control"
-                id="image"
-                required
-                [(ngModel)]="image"
-                name="image"
-              />
-          </div>
-          <div class="form-group">
-              <label for="category">Category</label>
-              <input
-                type="text"
-                class="form-control"
-                id="category"
-                required
-                [(ngModel)]="category"
-                name="category"
-              />
-          </div>
-          <div class="form-group">
-              <label for="content">Content</label>
-              <textarea
-                class="form-control"
-                id="content"
-                required
-                [(ngModel)]="content"
-                name="content"
-              ></textarea>a
+            <div class="form-group">
+                <label for="name">name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  [(ngModel)]="name"
+                  name="name"
+                />
             </div>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            [disabled]="!showUpdate.valid">
-            Edit
-          </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!showUpdate.valid">
+                Edit
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 

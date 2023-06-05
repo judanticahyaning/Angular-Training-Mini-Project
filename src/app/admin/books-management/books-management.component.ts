@@ -51,6 +51,14 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
     this.fetchPost();
   }
 
+  onDeletePost(postData: Post){
+    console.log(postData);
+    console.log(postData.id);
+    this.postService.deletePost(postData.id!);
+    this.fetchPost();
+
+  }
+
   viewPost(postData: Post){
     this.id = postData.id!;
     this.title = postData.title;
