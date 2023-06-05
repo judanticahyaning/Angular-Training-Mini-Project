@@ -9,12 +9,12 @@ import { AuthGuard } from "src/app/auth/auth.guard";
 import { LoginComponent } from "src/app/auth/login/login.component";
 
 export const AdminRoutes: Routes = [
-  // {
-  //   path: 'dashboard',
-  //   redirectTo: '/admin/dashboard',
-  //   canActivate: [AuthGuard],
-  //   pathMatch: "full"
-  // },
+  {
+    path: '',
+    redirectTo: '/admin/dashboard',
+    // canActivate: [AuthGuard],
+    pathMatch: "full"
+  },
   {
     path: 'dashboard',
     component: DashboardComponent

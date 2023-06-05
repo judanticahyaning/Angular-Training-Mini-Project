@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Post } from 'src/app/model/post.model';
-import { PostService } from 'src/app/post.service';
+// import { Post } from 'src/app/model/post.model';
+// import { PostService } from 'src/app/post.service';
 
 @Component({
   selector: 'app-books-management',
@@ -19,18 +19,18 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
   errorSub: Subscription;
   error = null;
 
-  showLoading = false;
+//   showLoading = false;
 
 
-  constructor(private postService: PostService){
+//   constructor(private postService: PostService){
 
-  }
+//   }
   
 
-  onCreatePost(postData: { title: string; image: string; category: string; content: string }){
-    this.postService.createAndPost(postData);
-    this.fetchPost();
-  }
+//   onCreatePost(postData: { title: string; image: string; category: string; content: string }){
+//     this.postService.createAndPost(postData);
+//     this.fetchPost();
+//   }
 
   onUpdatePost(){
     const data = {
@@ -57,26 +57,26 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
     this.category = postData.category;
   }
   ngOnInit(): void {
-    this.fetchPost();
-    this.errorSub = this.postService.errorHandling.subscribe(error => {
-      this.error = error;
-    });
+//     this.fetchPost();
+//     this.errorSub = this.postService.errorHandling.subscribe(error => {
+//       this.error = error;
+//     });
   }
   ngOnDestroy(): void {
-    this.errorSub.unsubscribe();
+//     this.errorSub.unsubscribe();
   }
 
-  private fetchPost(){
-    this.showLoading = true;
-    this.postService.fetchPost().subscribe({
-      next:(data) =>{
-        this.showLoading = false;
-        this.loadedPosts = data;  
-      },
-      error: (e) =>{
-        console.log(e);
-        this.error = e;
-      }
-    });
-  }
+//   private fetchPost(){
+//     this.showLoading = true;
+//     this.postService.fetchPost().subscribe({
+//       next:(data) =>{
+//         this.showLoading = false;
+//         this.loadedPosts = data;  
+//       },
+//       error: (e) =>{
+//         console.log(e);
+//         this.error = e;
+//       }
+//     });
+//   }
 }
