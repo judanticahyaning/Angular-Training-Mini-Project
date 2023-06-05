@@ -11,7 +11,7 @@ import { LoginComponent } from "src/app/auth/login/login.component";
 export const AdminRoutes: Routes = [
   // {
   //   path: 'dashboard',
-  //   redirectTo: 'dashboard',
+  //   redirectTo: '/admin/dashboard',
   //   canActivate: [AuthGuard],
   //   pathMatch: "full"
   // },

@@ -1,0 +1,18 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Add Book</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <ng-content></ng-content>
+	</div>
+	<!-- <div class="modal-footer">
+		<button type="submit" class="btn btn-outline-dark" form="postForm" (click)="modal.close('Save click')">Add</button>
+	</div> -->
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add book</button>
+
+<hr />
+
+<pre>{{ closeResult }}</pre>

@@ -11,12 +11,13 @@ import { PostService } from 'src/app/post.service';
 export class BooksManagementComponent implements OnInit, OnDestroy{
   
   loadedPosts: Post[] = [];
-  title: string = "";
-  content: string = "";
-  image: string = "";
-  category: string = "";
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  category: string;
   errorSub: Subscription;
-  error: {message: string};
+  error = null;
 
   showLoading = false;
 
@@ -31,7 +32,30 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
     this.fetchPost();
   }
 
+  onUpdatePost(){
+    const data = {
+      [this.id!]: {
+        title: this.title,
+        image: this.image,
+        content: this.content,
+        category: this.category
+      },
+    };
+    console.log(data);
+    this.postService.updatePost(data).subscribe((post) =>{
+        console.log(post);
+      }
+    );
+    this.fetchPost();
+  }
 
+  viewPost(postData: Post){
+    this.id = postData.id!;
+    this.title = postData.title;
+    this.image = postData.image;
+    this.content = postData.content;
+    this.category = postData.category;
+  }
   ngOnInit(): void {
     this.fetchPost();
     this.errorSub = this.postService.errorHandling.subscribe(error => {
