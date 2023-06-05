@@ -16,6 +16,7 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
   content: string;
   image: string;
   category: string;
+  available: boolean;
   errorSub: Subscription;
   error = null;
 
@@ -27,7 +28,8 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
   }
   
 
-  onCreatePost(postData: { title: string; image: string; category: string; content: string }){
+  onCreatePost(postData: { title: string; image: string; category: string; content: string , available: boolean}){
+    postData.available = true;
     this.postService.createAndPost(postData);
     this.fetchPost();
   }
@@ -38,7 +40,7 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
         title: this.title,
         image: this.image,
         content: this.content,
-        category: this.category
+        category: this.category,
       },
     };
     console.log(data);
@@ -55,7 +57,9 @@ export class BooksManagementComponent implements OnInit, OnDestroy{
     this.image = postData.image;
     this.content = postData.content;
     this.category = postData.category;
+    this.available = postData.available;
   }
+
   ngOnInit(): void {
     this.fetchPost();
     this.errorSub = this.postService.errorHandling.subscribe(error => {
