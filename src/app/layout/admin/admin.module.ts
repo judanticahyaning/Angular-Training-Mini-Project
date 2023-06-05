@@ -9,7 +9,7 @@ import { UserManagementComponent } from "src/app/admin/user-management/user-mana
 import { BooksIssueComponent } from "src/app/admin/books-issue/books-issue.component";
 import { FormsModule } from "@angular/forms";
 import { AuthRoutes } from "src/app/auth/auth.routing";
-import { NgbdModalBasic } from "src/app/components/modal/modal.component";
+// import { NgbdModalBasic } from "src/app/components/modal/modal.component";
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { NgbdModalBasic } from "src/app/components/modal/modal.component";
     RouterModule.forChild(AdminRoutes),
     // RouterModule.forChild(AuthRoutes),
     FormsModule,
-    NgbdModalBasic
+    // NgbdModalBasic
   ],
   declarations: [
     DashboardComponent,
