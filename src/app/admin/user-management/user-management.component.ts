@@ -21,6 +21,14 @@ export class UserManagementComponent implements OnInit{
 
   loadedPosts: any [] |undefined;
   
+  id: string;
+  fullname: string;
+  age: number;
+  address: string;
+  work: string;
+  phonenumber: string;
+
+
   constructor(
     private authSvc: AuthService,
     private httpClient: HttpClient,
@@ -36,6 +44,7 @@ export class UserManagementComponent implements OnInit{
   addingMember(member: Member){
     console.log(member);
     this.adminSvc.addMember(member);
+    this.showMember();
   }
 
   showMember(){
@@ -48,19 +57,33 @@ export class UserManagementComponent implements OnInit{
   }
 
   showForEditData(member: Member){
-      this.showUpdate.setValue({
-      id: member.id,
-      fullname: member.fullname,
-      dateOfBirth: member.dateOfBirth,
-      address: member.address,
-      work: member.work,
-      phonenumber: member.phoneNumber
-    });
+    this.id = member.id!;
+    this.fullname = member.fullname;
+    this.age = member.age;
+    this.address = member.address;
+    this.work = member.work;
+    this.phonenumber = member.phonenumber;
+
     console.log(this.showUpdate);
   }
 
-  updateDataMember(member: Member){
-
+  updateDataMember(){
+    const data = {
+      [this.id!]: {
+        fullname: this.fullname,
+        age: this.age,
+        address: this.address,
+        work: this.work,
+        phonenumber: this.phonenumber
+      },
+    };
+    console.log(data);
+    this.adminSvc.updatePost(data).subscribe((post) =>{
+        console.log(post);
+      }
+    );
+    this.showMember();
+    // this.fetchPost();
   }
 }
 

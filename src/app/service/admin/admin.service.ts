@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Member } from 'src/app/model/admin.model';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AdminService {
 
   endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
   postUrl: string = this.endpointUrl + 'post.json';
+  errorHandling = new Subject<any>();
 
   constructor(
     private httpClient: HttpClient
@@ -41,12 +43,18 @@ export class AdminService {
   showForEditData(member: Member) {
     const data = {
       fullname: member.fullname,
-      birth: member.dateOfBirth,
+      age: member.age,
       address: member.address,
       work: member.work,
-      phonenumber: member.phoneNumber
+      phonenumber: member.phonenumber
     }
     return this.httpClient.patch(this.postUrl, data);
 
+  }
+
+
+  updatePost(memberData: {[key: string]: {fullname: string, age: number, address: string, work: string, phonenumber:string}}){
+    console.log(memberData);
+    return this.httpClient.patch(this.postUrl, memberData);
   }
 }

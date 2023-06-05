@@ -9,24 +9,22 @@ import { UserManagementComponent } from "src/app/admin/user-management/user-mana
 import { BooksIssueComponent } from "src/app/admin/books-issue/books-issue.component";
 import { FormsModule } from "@angular/forms";
 import { AuthRoutes } from "src/app/auth/auth.routing";
-// import { NgbdModalBasic } from "src/app/components/modal/modal.component";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminRoutes),
-    // RouterModule.forChild(AuthRoutes),
-    FormsModule,
-    // NgbdModalBasic
-  ],
-  declarations: [
-    DashboardComponent,
-    BooksManagementComponent,
-    BooksCategoryComponent,
-    UserManagementComponent,
-    BooksIssueComponent
-  ]
+    declarations: [
+        DashboardComponent,
+        BooksManagementComponent,
+        BooksCategoryComponent,
+        UserManagementComponent,
+        BooksIssueComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminRoutes),
+        // RouterModule.forChild(AuthRoutes),
+        FormsModule,
+    ]
 })
 
 export class AdminComponentModule {}

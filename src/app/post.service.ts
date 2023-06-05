@@ -39,6 +39,7 @@ export class PostService {
     console.log(postData);
     return this.http.patch(this.postURL, postData);
   }
+  
   fetchPost(){
     let customParam = new HttpParams();
     customParam = customParam.append('print', 'pretty');

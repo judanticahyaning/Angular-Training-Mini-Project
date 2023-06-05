@@ -4,4 +4,5 @@ export interface Post{
     image: string;
     category: string;
     content: string;
+    // available: boolean;
 }

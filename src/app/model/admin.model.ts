@@ -1,8 +1,8 @@
 export interface Member{
   id?: string;
   fullname: string;
-  dateOfBirth: string;
+  age: number;
   address: string;
   work: string;
-  phoneNumber: string;
+  phonenumber: string;
 }

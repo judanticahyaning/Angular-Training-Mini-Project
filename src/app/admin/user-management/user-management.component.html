@@ -21,13 +21,10 @@
             <table class="table">
               <thead class=" text-primary">
                 <th>
-                  ID
-                </th>
-                <th>
                   Full Name
                 </th>
                 <th>
-                  Date of Birth
+                  Age
                 </th>
                 <th>
                   Address
@@ -45,13 +42,10 @@
               <tbody *ngFor="let dataUser of loadedPosts">
                 <tr>
                   <td>
-                    {{dataUser.id}}
-                  </td>
-                  <td>
                     {{dataUser.fullname}}
                   </td>
                   <td>
-                    {{dataUser.birth}}
+                    {{dataUser.age}}
                   </td>
                   <td>
                     {{dataUser.address}}
@@ -104,22 +98,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #showUpdate="ngForm" (ngSubmit)="updateDataMember(showUpdate.value)">
-          <!-- ID Input -->
-          <div class="form-outline mb-4">
-            <label class="form-label"
-                   for="fullname">ID</label>
-            <input type="text"
-                   id="id"
-                   name="id"
-                   ngModel
-                   fullname
-                   required
-                   class="form-control form-control-lg" />
-
-          </div>
-
-
+        <form #showUpdate="ngForm" (ngSubmit)="updateDataMember()">
           <!--Full Name Input -->
           <div class="form-outline mb-4">
             <label class="form-label"
@@ -127,21 +106,21 @@
             <input type="text"
                    id="fullname"
                    name="fullname"
-                   ngModel
+                   [(ngModel)]="fullname"
                    fullname
                    required
                    class="form-control form-control-lg" />
 
           </div>
 
-          <!-- Date of Birth Input -->
+          <!-- Date of age Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
-                   for="birth">Date of Birth</label>
+                   for="age">Age</label>
             <input type="text"
-                   id="birth"
-                   name="birth"
-                   ngModel
+                   id="age"
+                   name="age"
+                   [(ngModel)]="age"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -153,7 +132,7 @@
             <input type="text"
                    id="address"
                    name="address"
-                   ngModel
+                   [(ngModel)]="address"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -165,7 +144,7 @@
             <input type="text"
                    id="work"
                    name="work"
-                   ngModel
+                   [(ngModel)]="work"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -177,7 +156,7 @@
             <input type="text"
                    id="phonenumber"
                    name="phonenumber"
-                   ngModel
+                   [(ngModel)]="phonenumber"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -225,21 +204,21 @@
             <input type="text"
                    id="fullname"
                    name="fullname"
-                   ngModel
+                   [(ngModel)]="fullname"
                    fullname
                    required
                    class="form-control form-control-lg" />
 
           </div>
 
-          <!-- Date of Birth Input -->
+          <!-- Date of age Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
-                   for="birth">Date of Birth</label>
+                   for="age">Age</label>
             <input type="text"
-                   id="birth"
-                   name="birth"
-                   ngModel
+                   id="age"
+                   name="age"
+                   [(ngModel)]="age"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -251,7 +230,7 @@
             <input type="text"
                    id="address"
                    name="address"
-                   ngModel
+                   [(ngModel)]="address"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -263,7 +242,7 @@
             <input type="text"
                    id="work"
                    name="work"
-                   ngModel
+                   [(ngModel)]="work"
                    required
                    class="form-control form-control-lg" />
           </div>
@@ -275,7 +254,7 @@
             <input type="text"
                    id="phonenumber"
                    name="phonenumber"
-                   ngModel
+                   [(ngModel)]="phonenumber"
                    required
                    class="form-control form-control-lg" />
           </div>
