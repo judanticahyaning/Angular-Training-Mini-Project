@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { rentBook, returnBook } from 'src/app/model/admin.model';
+import { Member, rentBook, returnBook } from 'src/app/model/admin.model';
 import { Post } from 'src/app/model/post.model';
 import { PostService } from 'src/app/post.service';
 import { AdminService } from 'src/app/service/admin/admin.service';
@@ -17,6 +17,7 @@ export class BooksIssueComponent implements OnInit {
   loadedPosts: Post[] = [];
   rentReturn: rentBook[] = [];
   returnBooks: returnBook[] = [];
+  memberPost: Member[] = [];
 
   id!: string;
   title!: string;
@@ -25,17 +26,24 @@ export class BooksIssueComponent implements OnInit {
   category!: string;
   available!: boolean;
   member!: string;
+  rentDate!: Date;
+  returnDate!: Date;
 
+  
   constructor(
     private postSvc: PostService,
     private adminSvc: AdminService
   ) {
 
   }
+
+  // actualDateFormGroup = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split("T")[0];
+
   ngOnInit(): void {
     this.fetchBook();
     this.historyRent();
     this.historyReturn();
+    this.fetchMember();
   }
 
   fetchBook() {
@@ -91,6 +99,7 @@ export class BooksIssueComponent implements OnInit {
     category: string;
     available: boolean;
     member: string;
+    rentDate: Date;
   }) {
     rentReturn.available = false;
 
@@ -121,8 +130,13 @@ export class BooksIssueComponent implements OnInit {
     category: string;
     available: boolean;
     member: string;
+    returnDate: Date;
   }){
     rentReturn.available = true;
+    rentReturn.returnDate = this.returnDate;
+
+    console.log(this.returnDate);
+    console.log(rentReturn.returnDate)
 
     this.adminSvc.addHistoryReturn(rentReturn);
 
@@ -141,5 +155,25 @@ export class BooksIssueComponent implements OnInit {
       console.log(update);
     });
     
+  }
+
+  fetchMember(){
+    this.adminSvc.fetchMember().subscribe(
+      member => {
+        this.memberPost = member;
+        console.log(this.memberPost);
+      }
+    )
+  }
+
+  rentBookDate(event:any){
+    console.log(event);
+    this.rentDate = event;
+  }
+
+  returnBookDate(event: any){
+    console.log(event)
+    this.returnDate = event;
+    console.log(this.returnDate)
   }
 }
