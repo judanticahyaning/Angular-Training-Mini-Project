@@ -10,7 +10,9 @@ import { Category } from './model/category.model';
 })
 export class PostService {
 
-  endPointUrl: string = 'https://angular-mini-project-58446-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  // endPointUrl: string = 'https://angular-mini-project-58446-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  endPointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  
   postURL: string = this.endPointUrl + 'post.json';
   categoryURL: string = this.endPointUrl + 'categories.json';
   errorHandling = new Subject<any>();
@@ -55,7 +57,14 @@ export class PostService {
     });
   }
 
-  updatePost(postData: {[key: string]: {title: string, image: string, content: string, category: string}}){
+  updatePost(postData: {[key: string]: {
+    title: string, 
+    image: string, 
+    content: string, 
+    category: string,
+    available: boolean,
+    member: string
+  }}){
     console.log(postData);
     return this.http.patch(this.postURL, postData);
   }
@@ -120,6 +129,7 @@ export class PostService {
             postArray.push({...responseData[keys], id: keys})
           }
         }
+        console.log(responseData)
         return postArray;
       }),
       catchError(

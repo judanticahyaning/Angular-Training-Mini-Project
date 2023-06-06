@@ -11,7 +11,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/admin/books-management', title: 'Books Management',  icon:'education_atom', class: '' },
   { path: '/admin/books-category', title: 'Books Category',  icon:'location_map-big', class: '' },
   { path: '/admin/books-issue', title: 'Books Issue',  icon:'ui-1_bell-53', class: '' },
-  { path: '/admin/user-management', title: 'User Management',  icon:'users_single-02', class: '' },
+  { path: '/admin/user-management', title: 'Member Management',  icon:'users_single-02', class: '' },
 
 ];
 

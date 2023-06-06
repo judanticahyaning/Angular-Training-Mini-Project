@@ -14,12 +14,12 @@ export class BooksCategoryComponent implements OnInit{
   loadedCategory: Category[] = [];
 
   loadedPost: Post[] = [];
-  id: string;
-  name: string;
-  totalBook: number;
+  id!: string;
+  name!: string;
+  totalBook!: number;
   showLoading = false;
   error = null;
-  errorSub: Subscription;
+  errorSub!: Subscription;
 
   constructor(private postService: PostService){
 

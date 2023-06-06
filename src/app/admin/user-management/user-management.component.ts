@@ -21,12 +21,12 @@ export class UserManagementComponent implements OnInit{
 
   loadedPosts: any [] |undefined;
   
-  id: string;
-  fullname: string;
-  age: number;
-  address: string;
-  work: string;
-  phonenumber: string;
+  id!: string;
+  fullname!: string;
+  age!: number;
+  address!: string;
+  work!: string;
+  phonenumber!: string;
 
 
   constructor(
@@ -41,9 +41,8 @@ export class UserManagementComponent implements OnInit{
   this.showMember();
   }
 
-  addingMember(member: Member){
-    console.log(member);
-    this.adminSvc.addMember(member);
+  addingMember(memberData: {id:string; fullname: string; age: number; address: string; work: string; phonenumber: string;}){
+    this.adminSvc.addMember(memberData);
     this.showMember();
   }
 
@@ -83,31 +82,9 @@ export class UserManagementComponent implements OnInit{
       }
     );
     this.showMember();
-    // this.fetchPost();
+  }
+  
+  onDeleteUser(member: Member){
+    this.adminSvc.deleteMember(member.id!);
   }
 }
-
-  // editDataUser(data: authResDataUser){
-  //   console.log("bisa edit")
-  //   console.log(data)
-  //   // this.authSvc.updateDataUser(data);
-  //   this.authSvc.updateDataUser(data).subscribe(
-  //     dataUpdate => {
-  //       console.log(dataUpdate)
-  //     }
-  //   );
-  // }
-  
-  // showDataForUpdate(data: authResDataUser){
-  //   this.showUpdate.setValue({
-  //     // id: data.id,
-  //     email: data.email,
-  //     password: data.password
-  //   });
-  //   console.log(this.showUpdate);
-  //   console.log(data)
-  // }
-
-  // deleteDataUser(){
-  //   console.log("bisa delete")
-  // }

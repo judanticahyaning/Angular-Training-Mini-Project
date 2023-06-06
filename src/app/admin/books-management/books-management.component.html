@@ -6,7 +6,10 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between mx-4">
           <h2 class="card-title"> Book Management </h2>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+          <button type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#addModal">
             Add
           </button>
         </div>
@@ -32,7 +35,8 @@
               <tbody *ngFor="let post of loadedPosts">
                 <tr>
                   <td>
-                    <img src="{{post.image}}" style="height: 50px; width: 50px;">
+                    <img src="{{post.image}}"
+                         style="height: 50px; width: 50px;">
                   </td>
                   <td>
                     <h4>{{post.title}}</h4>
@@ -45,10 +49,15 @@
                   </td>
                   <td class="text-right">
                     <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="viewPost(post)">
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#editModal"
+                            (click)="viewPost(post)">
                       Edit
                     </button>
-                    <button class="btn btn-danger" (click)="onDeletePost(post)">Delete</button>
+                    <button class="btn btn-danger"
+                            (click)="onDeletePost(post)">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -62,67 +71,71 @@
 
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade"
+     id="addModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+       role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Book</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title"
+            id="exampleModalLongTitle">Add Book</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+        <form #postForm="ngForm"
+              (ngSubmit)="onCreatePost(postForm.value)">
           <div class="form-group">
             <label for="title">Title</label>
-            <input
-              type="text"
-              class="form-control"
-              id="title"
-              required
-              [(ngModel)]="title"
-              name="title"
-            />
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   required
+                   [(ngModel)]="title"
+                   name="title" />
           </div>
           <div class="form-group">
-              <label for="image">Image</label>
-              <input
-                type="text"
-                class="form-control"
-                id="image"
-                required
-                [(ngModel)]="image"
-                name="image"
-              />
+            <label for="image">Image</label>
+            <input type="text"
+                   class="form-control"
+                   id="image"
+                   required
+                   [(ngModel)]="image"
+                   name="image" />
           </div>
           <div class="form-group">
-              <label for="category">Category</label>
-              <input
-                type="text"
-                class="form-control"
-                id="category"
-                required
-                [(ngModel)]="category"
-                name="category"
-              />
+            <label for="category">Category</label>
+            <input type="text"
+                   class="form-control"
+                   id="category"
+                   required
+                   [(ngModel)]="category"
+                   name="category" />
           </div>
           <div class="form-group">
-              <label for="content">Content</label>
-              <textarea
-                class="form-control"
-                id="content"
-                required
-                [(ngModel)]="content"
-                name="content"
-              ></textarea>
-            </div>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            [disabled]="!postForm.valid">
+            <label for="content">Content</label>
+            <textarea class="form-control"
+                      id="content"
+                      required
+                      [(ngModel)]="content"
+                      name="content"></textarea>
+          </div>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!postForm.valid">
             Add
           </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal">Close</button>
         </form>
       </div>
       <!-- <div class="modal-footer">
@@ -135,70 +148,89 @@
 
 
 <!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade"
+     id="editModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+       role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit Book</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title"
+            id="exampleModalLongTitle">Edit Book</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form #showUpdate="ngForm" (ngSubmit)="onUpdatePost()">
+        <form #showUpdate="ngForm"
+              (ngSubmit)="onUpdatePost()">
           <div class="form-group">
             <label for="title">Title</label>
-            <input
-              type="text"
-              class="form-control"
-              id="title"
-              required
-              [(ngModel)]="title"
-              name="title"
-            />
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   required
+                   [(ngModel)]="title"
+                   name="title" />
           </div>
           <div class="form-group">
-              <label for="image">Image</label>
-              <input
-                type="text"
-                class="form-control"
-                id="image"
-                required
-                [(ngModel)]="image"
-                name="image"
-              />
+            <label for="image">Image</label>
+            <input type="text"
+                   class="form-control"
+                   id="image"
+                   required
+                   [(ngModel)]="image"
+                   name="image" />
           </div>
           <div class="form-group">
-              <label for="category">Category</label>
-              <input
-                type="text"
-                class="form-control"
-                id="category"
-                required
-                [(ngModel)]="category"
-                name="category"
-              />
+            <label for="category">Category</label>
+            <input type="text"
+                   class="form-control"
+                   id="category"
+                   required
+                   [(ngModel)]="category"
+                   name="category" />
           </div>
           <div class="form-group">
-              <label for="content">Content</label>
-              <textarea
-                class="form-control"
-                id="content"
-                required
-                [(ngModel)]="content"
-                name="content"
-              ></textarea>
-            </div>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            [disabled]="!showUpdate.valid">
+            <label for="content">Content</label>
+            <textarea class="form-control"
+                      id="content"
+                      required
+                      [(ngModel)]="content"
+                      name="content"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="available">Available</label>
+            <input class="form-control"
+                      id="available"
+                      required
+                      [(ngModel)]="available"
+                      name="available"/>
+          </div>
+          <div class="form-group">
+            <label for="available">Member</label>
+            <input class="form-control"
+                      id="member"
+                      required
+                      [(ngModel)]="member"
+                      name="member"/>
+          </div>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!showUpdate.valid">
             Edit
           </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal">Close</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-

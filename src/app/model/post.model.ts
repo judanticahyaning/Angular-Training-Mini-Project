@@ -5,4 +5,5 @@ export interface Post{
     category: string;
     content: string;
     available: boolean;
+    member: string;
 }

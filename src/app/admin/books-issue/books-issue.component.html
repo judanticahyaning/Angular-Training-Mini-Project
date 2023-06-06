@@ -1,42 +1,377 @@
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
+  <!-- table rent n return -->
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Books Issue </h4>
+          <h4 class="card-title"> Rents and Return Books </h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table">
               <thead class=" text-primary">
                 <th>
-                  ID
+                  Title
                 </th>
                 <th>
-                  Email
+                  Description
+                </th>
+                <th>
+                  Category
+                </th>
+                <th>
+                  Member
+                </th>
+                <th>
+                  Avaible or Not
                 </th>
                 <th>
                   Action
                 </th>
               </thead>
-              <tbody>
+              <tbody *ngFor="let dataBook of loadedPosts">
                 <tr>
                   <td>
-                    Minerva Hooper
+                    {{dataBook.title}}
                   </td>
                   <td>
-                    Curaçao
+                    {{dataBook.content}}
                   </td>
                   <td>
-                    <button class="btn btn-warning">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
+                    {{dataBook.category}}
+                  </td>
+                  <td *ngIf="dataBook.available">
+                    -
+                  </td>
+                  <td *ngIf="!dataBook.available">
+                    {{dataBook.member}}
+                  </td>
+                  <td>
+                    {{dataBook.available}}
+                  </td>
+                  <!-- <td *ngFor="let dataBook of rentReturn">
+                    {{dataBook.available}}
+                  </td> -->
+                  <td>
+                    <button *ngIf="dataBook.available; else return"
+                            class="btn btn-success"
+                            data-toggle="modal"
+                            data-target="#rentModal"
+                            (click)="showRent(dataBook)">Rent</button>
+                    <ng-template #return>
+                      <button class="btn btn-danger"
+                              data-toggle="modal"
+                              data-target="#returnModal"
+                              (click)="showRent(dataBook)">Return</button>
+                    </ng-template>
                   </td>
                 </tr>
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- table history rent -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> History Rent </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Title
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Category
+                </th>
+                <th>
+                  Member
+                </th>
+                <th>
+                  Avaible or Not
+                </th>
+              </thead>
+              <tbody *ngFor="let dataBook of rentReturn">
+                <tr>
+                  <td>
+                    {{dataBook.title}}
+                  </td>
+                  <td>
+                    {{dataBook.content}}
+                  </td>
+                  <td>
+                    {{dataBook.category}}
+                  </td>
+                  <td>
+                    {{dataBook.member}}
+                  </td>
+                  <td>
+                    {{dataBook.available}}
+                  </td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- table history return -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> History Return </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Title
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Category
+                </th>
+                <th>
+                  Member
+                </th>
+                <th>
+                  Avaible or Not
+                </th>
+              </thead>
+              <tbody *ngFor="let dataBook of returnBooks">
+                <tr>
+                  <td>
+                    {{dataBook.title}}
+                  </td>
+                  <td>
+                    {{dataBook.content}}
+                  </td>
+                  <td>
+                    {{dataBook.category}}
+                  </td>
+                  <td>
+                    {{dataBook.member}}
+                  </td>
+                  <td>
+                    {{dataBook.available}}
+                  </td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- modal rent -->
+<div class="modal fade"
+     id="rentModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="exampleModalLongTitle">Rent Books</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #show="ngForm"
+              (ngSubmit)="rentBook(show.value)">
+          <!--Full Name Input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="title">Title</label>
+            <input type="text"
+                   id="title"
+                   name="title"
+                   [(ngModel)]="title"
+                   fullname
+                   required
+                   class="form-control form-control-lg" />
+
+          </div>
+
+          <!-- Date of age Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="description">Description</label>
+            <input type="text"
+                   id="content"
+                   name="content"
+                   [(ngModel)]="content"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Address Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="address">Category</label>
+            <input type="text"
+                   id="category"
+                   name="category"
+                   [(ngModel)]="category"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Work Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="work">Member</label>
+            <input type="text"
+                   id="member"
+                   name="member"
+                   [(ngModel)]="member"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Phone Number Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="phonenumber">Available Or Not</label>
+            <input type="text"
+                   id="available"
+                   name="available"
+                   [(ngModel)]="available"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+            <button type="submit"
+                    class="btn btn-warning">Rent</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- return modal -->
+<div class="modal fade"
+     id="returnModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="exampleModalLongTitle">Rent Books</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #show="ngForm"
+              (ngSubmit)="returnBook(show.value)">
+          <!--Full Name Input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="title">Title</label>
+            <input type="text"
+                   id="title"
+                   name="title"
+                   [(ngModel)]="title"
+                   fullname
+                   required
+                   class="form-control form-control-lg" />
+
+          </div>
+
+          <!-- Date of age Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="description">Description</label>
+            <input type="text"
+                   id="content"
+                   name="content"
+                   [(ngModel)]="content"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Address Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="address">Category</label>
+            <input type="text"
+                   id="category"
+                   name="category"
+                   [(ngModel)]="category"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Work Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="work">Member</label>
+            <input type="text"
+                   id="member"
+                   name="member"
+                   [(ngModel)]="member"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+
+          <!-- Phone Number Input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="phonenumber">Available Or Not</label>
+            <input type="text"
+                   id="available"
+                   name="available"
+                   [(ngModel)]="available"
+                   required
+                   class="form-control form-control-lg" />
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+            <button type="submit"
+                    class="btn btn-warning">Rent</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
