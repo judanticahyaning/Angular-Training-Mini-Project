@@ -10,8 +10,8 @@ import { Category } from './model/category.model';
 })
 export class PostService {
 
-  // endPointUrl: string = 'https://angular-mini-project-58446-default-rtdb.asia-southeast1.firebasedatabase.app/';
-  endPointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  endPointUrl: string = 'https://angular-mini-project-58446-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  // endPointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
   
   postURL: string = this.endPointUrl + 'post.json';
   categoryURL: string = this.endPointUrl + 'categories.json';
@@ -78,6 +78,11 @@ export class PostService {
   deletePost(id: string){
     console.log(id);
     return this.http.delete(this.endPointUrl + "post/" + id + ".json").subscribe();
+  }
+
+  deleteCategoryPost(id: string){
+    console.log(id);
+    return this.http.delete(this.endPointUrl + "categories/" + id + ".json").subscribe();
   }
 
 

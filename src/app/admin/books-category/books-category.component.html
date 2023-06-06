@@ -18,7 +18,7 @@
                   Category
                 </th>
                 <th>
-                  Total Books
+                  Description
                 </th>
                 <th class="text-right">
                   Action
@@ -30,14 +30,14 @@
                     <p>{{post.name}}</p>
                   </td>
                   <td>
-                    <p>{{post.totalBook}}</p>
+                    <p>{{post.description}}</p>
                   </td>
                   <td class="text-right">
                     <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="viewPost(post)">
                       Edit
                     </button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger" (click)="onDeletePost(post)">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -63,7 +63,7 @@
       <div class="modal-body">
         <form #postForm="ngForm" (ngSubmit)="onCreateCategoryPost(postForm.value)">
           <div class="form-group">
-            <label for="name">name</label>
+            <label for="name">Name</label>
             <input
               type="text"
               class="form-control"
@@ -71,6 +71,17 @@
               required
               [(ngModel)]="name"
               name="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="description"
+              name="description"
             />
           </div>
           <button
@@ -105,7 +116,7 @@
         <form #showUpdate="ngForm" (ngSubmit)="onUpdateCategory()">
           <div class="form-group">
             <div class="form-group">
-                <label for="name">name</label>
+                <label for="name">Name</label>
                 <input
                   type="text"
                   class="form-control"
@@ -114,6 +125,17 @@
                   [(ngModel)]="name"
                   name="name"
                 />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="description"
+                name="description"
+              />
             </div>
             <button
                 class="btn btn-primary"

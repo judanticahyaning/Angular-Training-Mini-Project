@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/model/category.model';
 import { Post } from 'src/app/model/post.model';
@@ -9,20 +9,23 @@ import { PostService } from 'src/app/post.service';
   templateUrl: './books-category.component.html',
   styleUrls: ['./books-category.component.css']
 })
-export class BooksCategoryComponent implements OnInit{
+export class BooksCategoryComponent implements OnInit, OnDestroy{
   
   loadedCategory: Category[] = [];
 
   loadedPost: Post[] = [];
   id!: string;
   name!: string;
-  totalBook!: number;
+  description!: string;
   showLoading = false;
   error = null;
   errorSub!: Subscription;
 
   constructor(private postService: PostService){
 
+  }
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe();
   }
   ngOnInit(): void {
     this.fetchPost();
@@ -32,8 +35,7 @@ export class BooksCategoryComponent implements OnInit{
   }
 
 
-  onCreateCategoryPost(categoryData: { name: string; totalBook: number}){
-    categoryData.totalBook = 0;
+  onCreateCategoryPost(categoryData: { name: string; description: string}){
     this.postService.addCategoryAndPost(categoryData);
     this.fetchPost();
 
@@ -43,6 +45,7 @@ export class BooksCategoryComponent implements OnInit{
     const data = {
       [this.id!]: {
         name: this.name,
+        description: this.description
       },
     };
     console.log(data);
@@ -53,14 +56,21 @@ export class BooksCategoryComponent implements OnInit{
     this.fetchPost();
   }
 
+  onDeletePost(categoryData: Category) {
+    console.log(categoryData);
+    console.log(categoryData.id);
+    this.postService.deleteCategoryPost(categoryData.id!);
+    this.fetchPost();
+
+  }
+
   viewPost(categoryData: Category){
     this.id = categoryData.id!;
     this.name = categoryData.name;
-    this.totalBook = categoryData.totalBook;
+    this.description = categoryData.description;
   }
 
   private fetchPost(){
-    console.log(this.totalBook);
     this.showLoading = true;
     this.postService.fetchCategory().subscribe({
       next:(data) =>{
@@ -72,33 +82,5 @@ export class BooksCategoryComponent implements OnInit{
         this.error = e;
       }
     });
-
-    // this.postService.fetchPost().subscribe({
-    //   next:(data) =>{
-    //     this.showLoading = false;
-    //     this.loadedPost = data;  
-    //   },
-    //   error: (e) =>{
-    //     console.log(e);
-    //     this.error = e;
-    //   }
-    // });
-    // console.log(this.loadedCategory.at(0)!.name);
-    // this.setTotalBook();
   }
-
-  // private setTotalBook(){
-  //   console.log("masuk ke sini");
-    
-  //   this.loadedCategory.forEach(function (value){
-
-
-  //     // const totalItem = this.loadedPost.filter(p => 
-  //     //     p.category == element.name
-          
-  //     //   );
-  //       console.log(value.name);
-  //       // element.totalBook = totalItem.length;
-  //   });
-  // }
 }
