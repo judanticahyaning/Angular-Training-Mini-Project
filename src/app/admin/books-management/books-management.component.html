@@ -50,7 +50,7 @@
                   <td class="text-right">
                     <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
                     <button type="button"
-                            class="btn btn-primary"
+                            class="btn btn-warning"
                             data-toggle="modal"
                             data-target="#editModal"
                             (click)="viewPost(post)">
@@ -206,22 +206,24 @@
                       name="content"></textarea>
           </div>
           <div class="form-group">
-            <label for="available">Available</label>
+            <!-- <label for="available">Available</label> -->
             <input class="form-control"
                       id="available"
                       required
                       [(ngModel)]="available"
-                      name="available"/>
+                      name="available"
+                      type="hidden"/>
           </div>
           <div class="form-group">
-            <label for="available">Member</label>
+            <!-- <label for="available">Member</label> -->
             <input class="form-control"
                       id="member"
                       required
                       [(ngModel)]="member"
-                      name="member"/>
+                      name="member"
+                      type="hidden"/>
           </div>
-          <button class="btn btn-primary"
+          <button class="btn btn-warning"
                   type="submit"
                   [disabled]="!showUpdate.valid">
             Edit

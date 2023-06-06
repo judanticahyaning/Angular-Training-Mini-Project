@@ -15,6 +15,7 @@ export interface rentBook{
   category: string;
   available: boolean;
   member:string;
+  rentDate: Date;
 }
 
 export interface returnBook{
@@ -25,4 +26,5 @@ export interface returnBook{
   category: string;
   available: boolean;
   member:string;
+  returnDate: Date;
 }

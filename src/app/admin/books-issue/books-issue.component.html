@@ -88,6 +88,9 @@
             <table class="table">
               <thead class=" text-primary">
                 <th>
+                  Rent Date
+                </th>
+                <th>
                   Title
                 </th>
                 <th>
@@ -105,6 +108,9 @@
               </thead>
               <tbody *ngFor="let dataBook of rentReturn">
                 <tr>
+                  <td>
+                    {{dataBook.rentDate}}
+                  </td>
                   <td>
                     {{dataBook.title}}
                   </td>
@@ -140,6 +146,9 @@
             <table class="table">
               <thead class=" text-primary">
                 <th>
+                  Return Date
+                </th>
+                <th>
                   Title
                 </th>
                 <th>
@@ -157,6 +166,9 @@
               </thead>
               <tbody *ngFor="let dataBook of returnBooks">
                 <tr>
+                  <td>
+                    {{dataBook.returnDate}}
+                  </td>
                   <td>
                     {{dataBook.title}}
                   </td>
@@ -206,6 +218,24 @@
       <div class="modal-body">
         <form #show="ngForm"
               (ngSubmit)="rentBook(show.value)">
+          <!--Rent Date Input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="date">Rent Date</label>
+            <input type="date"
+                   id="rentDate"
+                   name="rentDate"
+                   rentDate
+                   required
+                   [(ngModel)]="rentDate"
+                   (ngModelChange)="rentBookDate($event)"
+                   class="form-control form-control-lg" />
+            <input type="text"
+                   class="form-control form-control-lg"
+                   value="{{rentDate}}" />
+
+          </div>
+
           <!--Full Name Input -->
           <div class="form-outline mb-4">
             <label class="form-label"
@@ -241,19 +271,21 @@
                    name="category"
                    [(ngModel)]="category"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Work Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
                    for="work">Member</label>
-            <input type="text"
-                   id="member"
-                   name="member"
-                   [(ngModel)]="member"
-                   required
-                   class="form-control form-control-lg" />
+            <select name="member"
+                    id="member"
+                    class="form-control form"
+                    [(ngModel)]="member">
+              <option value="">Select a Member</option>
+              <option *ngFor="let member of memberPost"
+                      [ngValue]="member.fullname">{{member.fullname}}</option>
+            </select>
           </div>
 
           <!-- Phone Number Input -->
@@ -292,7 +324,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"
-            id="exampleModalLongTitle">Rent Books</h5>
+            id="exampleModalLongTitle">Return Books</h5>
         <button type="button"
                 class="close"
                 data-dismiss="modal"
@@ -303,6 +335,25 @@
       <div class="modal-body">
         <form #show="ngForm"
               (ngSubmit)="returnBook(show.value)">
+          <!--Return Date Input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="date">Return Date</label>
+            <input type="date"
+                   id="returnDate"
+                   name="returnDate"
+                   returnDate
+                   required
+                   [(ngModel)]="returnDate"
+                   (ngModelChange)="returnBookDate($event)"
+                   class="form-control form-control-lg" />
+            <input type="text"
+                   class="form-control form-control-lg"
+                   value="{{returnDate}}" />
+
+          </div>
+
+
           <!--Full Name Input -->
           <div class="form-outline mb-4">
             <label class="form-label"
@@ -317,7 +368,7 @@
 
           </div>
 
-          <!-- Date of age Input -->
+          <!-- Age Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
                    for="description">Description</label>
@@ -369,7 +420,7 @@
                     class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
             <button type="submit"
-                    class="btn btn-warning">Rent</button>
+                    class="btn btn-warning">Return</button>
           </div>
         </form>
       </div>
