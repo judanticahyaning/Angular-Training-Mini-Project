@@ -14,7 +14,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
 const routes: Routes = [
     {
       path: '',
-      redirectTo: '/admin',
+      redirectTo: '/auth',
       pathMatch: 'full'
     },
   {
