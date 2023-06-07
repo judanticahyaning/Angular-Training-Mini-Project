@@ -200,22 +200,6 @@
                       [(ngModel)]="content"
                       name="content"></textarea>
           </div>
-          <div class="form-group">
-            <input class="form-control"
-                      id="available"
-                      required
-                      [(ngModel)]="available"
-                      name="available"
-                      type="hidden"/>
-          </div>
-          <div class="form-group">
-            <input class="form-control"
-                      id="member"
-                      required
-                      [(ngModel)]="member"
-                      name="member"
-                      type="hidden"/>
-          </div>
           <button class="btn btn-warning"
                   type="submit"
                   [disabled]="!showUpdate.valid">

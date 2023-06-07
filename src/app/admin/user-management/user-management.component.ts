@@ -16,10 +16,10 @@ import { AdminService } from 'src/app/service/admin/admin.service';
 export class UserManagementComponent implements OnInit{
   @ViewChild('showUpdate')showUpdate!: NgForm;
 
-  endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
-  postUrl: string = this.endpointUrl + 'post.json';
+  // endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  // postUrl: string = this.endpointUrl + 'post.json';
 
-  loadedPosts: any [] |undefined;
+  loadedPosts: Member [] = [];
   
   id!: string;
   fullname!: string;
@@ -38,7 +38,7 @@ export class UserManagementComponent implements OnInit{
   }
 
   ngOnInit(): void {
-  this.showMember();
+    this.showMember();
   }
 
   addingMember(memberData: {id:string; fullname: string; age: number; address: string; work: string; phonenumber: string;}){
@@ -50,9 +50,10 @@ export class UserManagementComponent implements OnInit{
     this.adminSvc.fetchMember().subscribe(
       member => {
         this.loadedPosts = member;
-        console.log(member)
+        console.log("list Member");
+        console.log(member);
       }
-    )
+    );
   }
 
   showForEditData(member: Member){

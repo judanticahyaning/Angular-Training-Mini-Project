@@ -9,8 +9,10 @@ import { Subject } from 'rxjs';
 })
 export class AdminService {
 
-  endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  // endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  endpointUrl: string = 'https://angular-mini-project-58446-default-rtdb.asia-southeast1.firebasedatabase.app/';
   
+  // postUrl: string = this.endpointUrl + 'issue.json';
   postUrl: string = this.endpointUrl + 'post.json';
   rentUrl: string = this.endpointUrl + 'rent.json';
   returnUrl: string = this.endpointUrl + 'return.json';

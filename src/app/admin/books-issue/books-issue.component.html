@@ -367,7 +367,7 @@
 
           </div>
 
-          <!-- Age Input -->
+          <!-- Description Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
                    for="description">Description</label>
@@ -379,7 +379,7 @@
                    class="form-control" />
           </div>
 
-          <!-- Address Input -->
+          <!-- Category Input -->
           <div class="form-outline mb-3">
             <label class="form-label"
                    for="address">Category</label>
@@ -387,18 +387,6 @@
                    id="category"
                    name="category"
                    [(ngModel)]="category"
-                   required
-                   class="form-control" />
-          </div>
-
-          <!-- Work Input -->
-          <div class="form-outline mb-3">
-            <label class="form-label"
-                   for="work">Member</label>
-            <input type="text"
-                   id="member"
-                   name="member"
-                   [(ngModel)]="member"
                    required
                    class="form-control" />
           </div>
@@ -411,7 +399,6 @@
                    id="available"
                    name="available"
                    [(ngModel)]="available"
-                   required
                    class="form-control" />
           </div>
           <div class="modal-footer">
@@ -420,7 +407,7 @@
                     data-dismiss="modal">Close</button>
             <button type="submit"
                     class="btn btn-warning"
-                    [disabled]="!show.valid">Return</button>
+                    >Return</button>
           </div>
         </form>
       </div>

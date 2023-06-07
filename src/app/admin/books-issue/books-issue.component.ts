@@ -48,12 +48,16 @@ export class BooksIssueComponent implements OnInit {
   fetchBook() {
     this.postSvc.fetchPost().subscribe({
       next: (data) => {
+        console.log("isi loaded post");
+        console.log(data);
         this.loadedPosts = data;
       },
       error: (error) => {
         console.log(error);
       }
-    })
+    });
+    
+
   }
 
   historyRent() {
@@ -101,7 +105,7 @@ export class BooksIssueComponent implements OnInit {
     rentDate: Date;
   }) {
     rentReturn.available = false;
-
+    // this.available = false;
     const data = {
       [this.id!]: {
         title: rentReturn.title,
@@ -118,7 +122,11 @@ export class BooksIssueComponent implements OnInit {
       console.log(update);
     });
     this.adminSvc.addHistoryRent(rentReturn);
+    console.log("add history success");
     this.fetchBook();
+    this.historyRent();
+    this.historyReturn();
+    console.log("fetch complete");
   }
 
   returnBook(rentReturn: {
@@ -153,7 +161,9 @@ export class BooksIssueComponent implements OnInit {
     this.adminSvc.updateListRentReturn(data).subscribe((update) => {
       console.log(update);
     });
-    
+    this.fetchBook();
+    this.historyRent();
+    this.historyReturn();
   }
 
   fetchMember(){

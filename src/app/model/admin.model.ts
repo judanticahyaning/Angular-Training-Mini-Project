@@ -8,7 +8,7 @@ export interface Member{
 }
 
 export interface rentBook{
-  id: string;
+  id?: string;
   title: string;
   content: string;
   image: string;
