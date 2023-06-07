@@ -6,34 +6,42 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { FormsModule } from '@angular/forms';
+import { BooksManagementComponent } from './admin/books-management/books-management.component';
+import { BooksCategoryComponent } from './admin/books-category/books-category.component';
+import { BooksIssueComponent } from './admin/books-issue/books-issue.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
 
 const routes: Routes = [
     {
       path: '',
-      redirectTo: '/auth',
+      redirectTo: '/admin',
       pathMatch: 'full'
     },
   {
-    path:'admin',
+    path: 'admin',
     component: AdminComponent,
-    // canActivate: [AuthGuard],
-    loadChildren: () => import('./layout/admin/admin.module').then(x=>x.AdminComponentModule)
-    // children: [
-    //   {
-    //     path: '',
-    //     loadChildren: () => import('./layout/admin/admin.module').then(x=>x.AdminComponentModule)
-    //   }
-    // ]
+    children: [
+      {
+        path: 'books-management',
+        component: BooksManagementComponent
+      },
+      {
+        path: 'books-category',
+        component: BooksCategoryComponent
+      },
+      {
+        path: 'books-issue',
+        component: BooksIssueComponent
+      },
+      {
+        path: 'user-management',
+        component: UserManagementComponent
+      },
+    ]
   },
   {
     path: 'auth',
     component: AuthComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./auth/auth.module').then(x=>x.AuthComponentModule)
-      }
-    ]
   },
   {
     path: '**',
@@ -43,8 +51,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    BrowserModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

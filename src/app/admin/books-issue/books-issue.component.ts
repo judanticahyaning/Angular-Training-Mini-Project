@@ -37,8 +37,7 @@ export class BooksIssueComponent implements OnInit {
 
   }
 
-  // actualDateFormGroup = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split("T")[0];
-
+ 
   ngOnInit(): void {
     this.fetchBook();
     this.historyRent();

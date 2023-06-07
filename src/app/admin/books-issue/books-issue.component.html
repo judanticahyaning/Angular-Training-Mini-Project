@@ -51,9 +51,6 @@
                   <td>
                     {{dataBook.available}}
                   </td>
-                  <!-- <td *ngFor="let dataBook of rentReturn">
-                    {{dataBook.available}}
-                  </td> -->
                   <td>
                     <button *ngIf="dataBook.available; else return"
                             class="btn btn-success"
@@ -229,9 +226,9 @@
                    required
                    [(ngModel)]="rentDate"
                    (ngModelChange)="rentBookDate($event)"
-                   class="form-control form-control-lg" />
+                   class="form-control" />
             <input type="text"
-                   class="form-control form-control-lg"
+                   class="form-control"
                    value="{{rentDate}}" />
 
           </div>
@@ -246,7 +243,7 @@
                    [(ngModel)]="title"
                    fullname
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
 
           </div>
 
@@ -259,7 +256,7 @@
                    name="content"
                    [(ngModel)]="content"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Address Input -->
@@ -280,7 +277,7 @@
                    for="work">Member</label>
             <select name="member"
                     id="member"
-                    class="form-control form"
+                    class="form-control"
                     [(ngModel)]="member">
               <option value="">Select a Member</option>
               <option *ngFor="let member of memberPost"
@@ -297,14 +294,16 @@
                    name="available"
                    [(ngModel)]="available"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
           <div class="modal-footer">
             <button type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
             <button type="submit"
-                    class="btn btn-warning">Rent</button>
+                    class="btn btn-warning"
+                    [disabled]="!show.valid">Rent
+                  </button>
           </div>
         </form>
       </div>
@@ -346,9 +345,9 @@
                    required
                    [(ngModel)]="returnDate"
                    (ngModelChange)="returnBookDate($event)"
-                   class="form-control form-control-lg" />
+                   class="form-control" />
             <input type="text"
-                   class="form-control form-control-lg"
+                   class="form-control"
                    value="{{returnDate}}" />
 
           </div>
@@ -364,7 +363,7 @@
                    [(ngModel)]="title"
                    fullname
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
 
           </div>
 
@@ -377,7 +376,7 @@
                    name="content"
                    [(ngModel)]="content"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Address Input -->
@@ -389,7 +388,7 @@
                    name="category"
                    [(ngModel)]="category"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Work Input -->
@@ -401,7 +400,7 @@
                    name="member"
                    [(ngModel)]="member"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Phone Number Input -->
@@ -413,14 +412,15 @@
                    name="available"
                    [(ngModel)]="available"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
           <div class="modal-footer">
             <button type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
             <button type="submit"
-                    class="btn btn-warning">Return</button>
+                    class="btn btn-warning"
+                    [disabled]="!show.valid">Return</button>
           </div>
         </form>
       </div>

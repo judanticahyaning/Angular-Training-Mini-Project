@@ -5,25 +5,25 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule,
+    // RouterModule,
     NgbModule
   ],
   declarations: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent
+    // FooterComponent,
+    // NavbarComponent,
+    // SidebarComponent
   ],
   exports: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent
+    // FooterComponent,
+    // NavbarComponent,
+    // SidebarComponent
   ]
 })
 export class ComponentsModule { }

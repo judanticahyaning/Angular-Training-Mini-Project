@@ -2,26 +2,167 @@
   <div class="container-fluid">
     <div class="navbar-wrapper">
       <a class="navbar-brand"
-         [routerLink]="['/auth']">MINI LIBRARY</a>
+         (click)="Guest()">MINI LIBRARY</a>
     </div>
     <div class="collapse navbar-collapse justify-content-end"
          id="collapseExample">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link"
-             [routerLink]="['/auth/login']">
+             (click)="Login()">
             <span>Login</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-             [routerLink]="['/auth/register']">
-            <span>Register</span>
           </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<router-outlet></router-outlet>
 
+<!-- guest area -->
+<div class="panel-header-sm">
+</div>
+<div class="main-content"
+     *ngIf="isLogin === false">
+  <div class="container">
+    <div class="row align-items-start">
+      <div *ngFor="let post of loadedPosts"
+           class="col-12 col-sm-6 col-md-4">
+        <div class="card p-2 mb-2">
+          <div class="card-body">
+            <img src={{post.image}}
+                 alt=""
+                 style="width: 8rem; height: 8rem;">
+            <h5>
+              {{post.title}}
+            </h5>
+            <button type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#detailModal"
+                    (click)="viewPost(post)">
+              Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- login area -->
+<section class="vh-100">
+  <div class="container-fluid h-custom"
+       *ngIf="isLogin === true">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+             class="img-fluid"
+             alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+        <form #loginForm="ngForm"
+              (ngSubmit)="onSubmit(loginForm)">
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <h2 class="fw-normal mb-3 fw-bold">Login</h2>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label"
+                   for="email">Email address</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   ngModel
+                   email
+                   required
+                   class="form-control form-control-lg"
+                   placeholder="Enter a valid email address" />
+
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label"
+                   for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   ngModel
+                   minlength="6"
+                   required
+                   class="form-control form-control-lg"
+                   placeholder="Enter password" />
+
+          </div>
+
+          <div class="text-center text-lg-start">
+            <button type="submit"
+                    class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                    [disabled]="!loginForm.valid">Login</button>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Detail Modal -->
+<div class="modal fade"
+     id="detailModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="exampleModalLongTitle">Detail Book</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4">
+          <img src={{image}}
+               class="card-img-top"
+               alt="...">
+        </div>
+        <div class="form-outline">
+          <label for="title">Title : </label>
+          {{title}}
+        </div>
+        <div class="form-outline">
+          <label for="category">Category : </label>
+          {{category}}
+        </div>
+        <div class="form-outline">
+          <label for="category">Description : </label>
+          {{content}}
+        </div>
+        <div class="form-outline"
+             *ngIf="available">
+          <strong>Available for rent!</strong>
+        </div>
+        <div class="form-outline"
+             *ngIf="!available">
+          <strong>Not available for rent!</strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

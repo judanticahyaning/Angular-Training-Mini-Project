@@ -4,17 +4,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-lg-10">
-              <h4 class="card-title"> Member Management</h4>
-            </div>
-            <div class="col">
+        <div class="card-header d-flex justify-content-between">
+              <h4 class="card-title">Member Management</h4>
               <button class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#addModal">Add Member</button>
-            </div>
-          </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -109,7 +103,7 @@
                    [(ngModel)]="fullname"
                    fullname
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
 
           </div>
 
@@ -122,7 +116,7 @@
                    name="age"
                    [(ngModel)]="age"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Address Input -->
@@ -134,7 +128,7 @@
                    name="address"
                    [(ngModel)]="address"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Work Input -->
@@ -146,7 +140,7 @@
                    name="work"
                    [(ngModel)]="work"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Phone Number Input -->
@@ -158,14 +152,15 @@
                    name="phonenumber"
                    [(ngModel)]="phonenumber"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
           <div class="modal-footer">
             <button type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
             <button type="submit"
-                    class="btn btn-warning">Edit</button>
+                    class="btn btn-warning"
+                    [disabled]="!showUpdate.valid">Edit</button>
           </div>
         </form>
       </div>
@@ -207,7 +202,7 @@
                    [(ngModel)]="fullname"
                    fullname
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
 
           </div>
 
@@ -220,7 +215,7 @@
                    name="age"
                    [(ngModel)]="age"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Address Input -->
@@ -232,7 +227,7 @@
                    name="address"
                    [(ngModel)]="address"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Work Input -->
@@ -244,7 +239,7 @@
                    name="work"
                    [(ngModel)]="work"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
 
           <!-- Phone Number Input -->
@@ -256,14 +251,15 @@
                    name="phonenumber"
                    [(ngModel)]="phonenumber"
                    required
-                   class="form-control form-control-lg" />
+                   class="form-control" />
           </div>
           <div class="modal-footer">
             <button type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
             <button type="submit"
-                    class="btn btn-primary">Add</button>
+                    class="btn btn-primary"
+                    [disabled]="!addMember.valid">Add</button>
           </div>
         </form>
       </div>

@@ -5,9 +5,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header d-flex justify-content-between mx-4">
-          <h2 class="card-title"> Book Category Management </h2>
+          <h4 class="card-title"> Book Category Management </h4>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-            Add
+            Add Category
           </button>
         </div>
         <div class="card-body mx-4">
@@ -27,13 +27,12 @@
               <tbody *ngFor="let post of loadedCategory">
                 <tr>
                   <td>
-                    <p>{{post.name}}</p>
+                    {{post.name}}
                   </td>
                   <td>
-                    <p>{{post.description}}</p>
+                    {{post.description}}
                   </td>
                   <td class="text-right">
-                    <!-- <button class="btn btn-warning" (click)="editDataUser(dataUser)">Edit</button> -->
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal" (click)="viewPost(post)">
                       Edit
                     </button>
@@ -93,10 +92,6 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" form="showUpdate" class="btn btn-primary" [disabled]="!showUpdate.valid">Edit</button>
-      </div> -->
     </div>
   </div>
 </div>

@@ -13,7 +13,6 @@ import { catchError, tap, map, reduce } from "rxjs/operators";
 export class AuthService {
 
   userSubject = new BehaviorSubject<User>(null!);
-  // endpointUrl: string = 'https://angular-training-a3afa-default-rtdb.asia-southeast1.firebasedatabase.app/';
   endpointUrl: string = 'https://library-miniproject-angular-default-rtdb.asia-southeast1.firebasedatabase.app/';
   postUrl: string = this.endpointUrl + 'post.json';
 
@@ -89,23 +88,16 @@ export class AuthService {
           password: request.password,
           returnSecureToken: request.returnSecureToken
         }
-      ).pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expired
-          )
-          this.responseDataAuth = {
-            idToken: resData.idToken,
-            email: resData.email,
-            refreshToken: resData.refreshToken,
-            expiresIn: resData.expired,
-            localId: resData.localId,
-          }
-        })
+      // ).pipe(
+      //   catchError(this.handleError),
+      //   tap(resData => {
+      //     this.handleAuthentication(
+      //       resData.email,
+      //       resData.localId,
+      //       resData.idToken,
+      //       +resData.expired
+      //     )
+      //   })
       );
   }
 
@@ -137,19 +129,6 @@ export class AuthService {
   }
 
   fetchDataUser() {
-    // return this.httpClient.get<{[key : string]: UserData}>(this.postUrl)
-    //   .pipe(
-    //     map(responseData => {
-    //       const postArray: UserData[] = [];
-    //       for(const key in responseData){
-    //         if(responseData.hasOwnProperty(key)){
-    //           postArray.push({...responseData[key],id:key})
-    //         }
-    //       }
-    //       return postArray;
-    //     })
-    //   )
-    console.log(this.responseDataAuth?.idToken)
     return this.httpClient.post<authResponseData>
       ('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB21nik_h07IWd-D1Gwz9LX4nV0OUPyP_E',
         {
@@ -167,17 +146,7 @@ export class AuthService {
         })
       );
   }
-
-  // updateDataUser(dataUser: authResDataUser){
-  //   const data = {
-  //     email: dataUser.email,
-  //     password: dataUser.password
-  //   }
-  //   return this.httpClient.patch(this.postUrl, data);
-
-  //  console.log(data);
-  // }
-
+  
   private handleAuthentication(email: string, localId: string, token: string, expired: number) {
     const expirationDate = new Date(new Date().getTime() + expired * 1000);
     const user = new User(email, localId, token, expirationDate);

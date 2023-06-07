@@ -7,25 +7,35 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { ComponentsModule } from './components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './service/auth/auth-interceptor.service';
 import { ROUTES, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BooksManagementComponent } from './admin/books-management/books-management.component';
+import { BooksCategoryComponent } from './admin/books-category/books-category.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { BooksIssueComponent } from './admin/books-issue/books-issue.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     AdminComponent,
     AuthComponent,
+    BooksManagementComponent,
+    BooksCategoryComponent,
+    UserManagementComponent,
+    BooksIssueComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    AppComponent
   ],
   imports: [
-    // RouterModule.forRoot(ROUTES),
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
